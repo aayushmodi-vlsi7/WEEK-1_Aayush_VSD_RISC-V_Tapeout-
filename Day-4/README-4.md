@@ -37,6 +37,7 @@ Key Point: GLS bridges the gap between RTL simulation and actual hardware behavi
  ### 2. Synthesis-Simulation Mismatch
  Sometimes, a design that works perfectly in RTL simulation behaves differently once synthesized. This is called a synthesis-simulation mismatch.
 
+
 #### Common reasons:
 
 RTL contains constructs that synthesis tools cannot interpret.
@@ -82,6 +83,18 @@ Yosys synthesis confirms netlist correctness.
 
 GLS validates gate-level behavior aligns with RTL.
 
+ 2*1 Mux using a ternery operator is given below:
+
+ <img width="2780" height="323" alt="gvim_ternary_operator_mux v" src="https://github.com/user-attachments/assets/ae63f5a6-4a58-48f6-8cf4-d7b8fc4ad4a8" />
+<img width="2780" height="1031" alt="gvim_tb_ternary_operator_mux v" src="https://github.com/user-attachments/assets/64565c3d-0560-40ae-a4ea-6ebaabb80a2c" />
+GTKwave files are given below:
+<img width="2780" height="1616" alt="gtkwave_ternary_operator_mux" src="https://github.com/user-attachments/assets/b3014405-91cd-4561-9017-8a995fdb65a0" />
+<img width="2780" height="1616" alt="gtkwave_ternary_operator_mux2" src="https://github.com/user-attachments/assets/d65abd13-a698-4af5-8ce3-b5ad7f233cf6" />
+
+YOSYS synthesis is given below:
+<img width="2780" height="1616" alt="ternary_operator_mux_netlist" src="https://github.com/user-attachments/assets/4f8816e0-03a1-4d9c-b6ed-62e512e13fb5" />
+
+
 ##### Common Pitfalls Introduced:
 
 Incomplete sensitivity lists (i0, i1, sel should be included).
@@ -94,6 +107,15 @@ Scenario: Using blocking assignments inside a clocked always block.
 
 Issue: Sequential dependencies may use previous values, leading to incorrect outputs after synthesis.
 
+Example of Bad Mux is given below:
+<img width="2780" height="527" alt="gvim_bad_mux v" src="https://github.com/user-attachments/assets/5c5462da-c1d0-4046-b395-c0cf619ff805" />
+GTKwaveform
+<img width="2780" height="1616" alt="gtkwave_bad_mux" src="https://github.com/user-attachments/assets/66402f7b-b727-4d15-aaaf-a9b8faa9b22b" />
+<img width="2780" height="1616" alt="gtkwave_bad_mux2" src="https://github.com/user-attachments/assets/dc2c0cac-ea62-4c95-8555-504c71463e6e" />
+YOSYS
+
+
+
 ##### Solution:
 
 Use non-blocking assignments for clocked logic.
@@ -101,6 +123,16 @@ Use non-blocking assignments for clocked logic.
 Calculate all intermediate values before updating dependent signals.
 
 Observation: Correcting assignment types eliminates mismatch and ensures RTL simulation matches GLS.
+
+For the Blocking Caveat
+<img width="2780" height="496" alt="gvim_blocking_caveat v" src="https://github.com/user-attachments/assets/a3d941c3-f3fe-4b8d-a15a-8e0f61d6ee5c" />
+GTKwaveform:
+<img width="2780" height="1613" alt="gtkwave_blocking_caveat" src="https://github.com/user-attachments/assets/331c18e1-8c4f-4cd2-a0d1-de9209afc728" />
+<img width="2780" height="1613" alt="gtkwave_blocking_caveat2" src="https://github.com/user-attachments/assets/a07932d0-2835-4bbe-b14b-4fb34565df60" />
+YOSYS:
+<img width="2780" height="1613" alt="blocking_caveat_netlist" src="https://github.com/user-attachments/assets/ca778321-e147-4faf-b13f-b871b3f89431" />
+
+
 
 ### 5. Key Takeaways
 GLS ensures post-synthesis correctness before physical design.
