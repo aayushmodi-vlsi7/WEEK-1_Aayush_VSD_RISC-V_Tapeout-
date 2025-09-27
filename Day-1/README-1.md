@@ -49,6 +49,10 @@ sudo apt install vim-gtk3
 ```bash
 iverilog good_mux.v tb_good_mux.v
 ```
+<img width="2780" height="553" alt="gvim good_mux v" src="https://github.com/user-attachments/assets/d457403a-0472-4988-a162-bd39cbeb2c00" />
+
+<img width="2780" height="980" alt="gvim_tb_good_mux v" src="https://github.com/user-attachments/assets/ba8cefe8-085e-41df-abcd-2ef3fc4630ed" />
+
 ```bash
 ./a.out
 ```
@@ -57,9 +61,7 @@ gtkwave tb_good_mux.vcd
 ```
 <div align="center"> <img src="Day 1 gtkwave.png" alt="MUX GTKWave Output" width="65%"> </div>
 
-![Alt Text](Day 1 gtkwave.png)
-
-![Alt Text](Day 1 gtkwave.png)
+<img width="2780" height="1618" alt="gtkwave_good_mux" src="https://github.com/user-attachments/assets/311b22e9-10a5-43c8-b4b0-392d8f052ee2" />
 
 ### Understanding the Multiplexer
 Inputs: Two data signals (i0, i1) and one selector (sel).
@@ -109,7 +111,7 @@ The final step opens a schematic showing how the RTL multiplexer is realized usi
 
 <div align="center"> <img src="Day 1 gtkwave.png" alt="MUX Gate-Level" width="65%"> </div>
 
-![Alt Text](Day 1 gtkwave.png)
+<img width="2780" height="1618" alt="Netlist Good_mux" src="https://github.com/user-attachments/assets/5362b556-d370-4203-afd4-e38e2f8fb12f" />
 
 ## Wrap-Up Learnings
 Here’s what you’ve accomplished today:
