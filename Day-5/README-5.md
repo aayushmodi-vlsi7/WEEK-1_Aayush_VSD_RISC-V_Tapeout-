@@ -131,13 +131,13 @@ YOSYS:
 
 1*8 Demux
 GVIM file:
-<img width="2780" height="770" alt="gvim_demux_case v" src="https://github.com/user-attachments/assets/25eba529-23d3-42df-9e03-c193e7fbc8b7" />
+
 <img width="2780" height="770" alt="gvim_demux_generate v" src="https://github.com/user-attachments/assets/7716dd12-bc90-451b-94d6-2f018dded318" />
 GTKwaveform:
-<img width="2780" height="1611" alt="gtkwave_demux_case" src="https://github.com/user-attachments/assets/63e19271-f2e7-4f7b-82b4-3e39079ff781" />
+
 <img width="2780" height="1611" alt="gtkwave_demux_generate" src="https://github.com/user-attachments/assets/eb0a1533-bfb8-4e45-a711-d1b5f4573c64" />
 YOSYS:
-<img width="2780" height="1611" alt="demux_case_netlist" src="https://github.com/user-attachments/assets/6087af31-c0fe-4ec2-bda9-867919ffd182" />
+
 <img width="2780" height="1611" alt="demux_generate_netlist" src="https://github.com/user-attachments/assets/ef3389fe-ca1d-471d-b00d-fdab4fbfe204" />
 
 RCA Verilog code:
