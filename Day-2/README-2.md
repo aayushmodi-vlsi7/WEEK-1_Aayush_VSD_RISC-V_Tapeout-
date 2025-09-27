@@ -93,12 +93,22 @@ iverilog dff_asyncres.v tb_dff_asyncres.v
 ```bash
 gtkwave tb_dff_asyncres.vcd
 ```
-<img width="2780" height="1620" alt="dff_asyncres_waveform" src="https://github.com/user-attachments/assets/548a9b79-b404-4dfa-ba28-7007e78fd869" />
+<img width="2780" height="637" alt="dff_asyncres v" src="https://github.com/user-attachments/assets/44d5a920-54a6-4a8f-acf7-fe8d0fbbd72e" />
+
 
 Run the same commands for asyn and syncres...
 <img width="2780" height="637" alt="dff_async_set v" src="https://github.com/user-attachments/assets/189e6411-8eb0-4c2a-abe4-be814a03e52a" />
 
 <img width="2780" height="637" alt="dff_syncres v" src="https://github.com/user-attachments/assets/a0dde951-a54b-46ad-b572-742c67043c2e" />
+
+GTKwaveform:
+<img width="2780" height="1620" alt="dff_asyncres_waveform" src="https://github.com/user-attachments/assets/548a9b79-b404-4dfa-ba28-7007e78fd869" />
+
+Run the same commands for asyn and syncres...
+
+<img width="2780" height="1620" alt="dff_async_wqaveform" src="https://github.com/user-attachments/assets/6a07e017-5cc4-4d5f-8b94-92f5e5ff0810" />
+<img width="2780" height="1620" alt="dff_syncres_waveform" src="https://github.com/user-attachments/assets/cd5f5e2b-9107-42fe-be49-2507ce6b59c0" />
+
 
 
 To view the synthesis with Yosys of these Flip-Flop, run the following commands:
