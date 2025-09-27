@@ -5,52 +5,47 @@
 </div>  
 
 ## Introduction: 
-You’ll start writing hardware descriptions in Verilog, run your first simulations with Icarus Verilog, and even peek into logic synthesis with Yosys.
+This session is your launchpad into the world of digital logic design. We’ll describe hardware in Verilog, run quick simulations, and then translate designs into real hardware primitives using Yosys. By the end, you’ll understand how ideas written in code turn into circuits.
 
-This first step is designed to be simple and hands-on, so you can build confidence while learning the fundamentals of RTL design.
+## Roadmap for the Session
+Why simulation matters before hardware.
 
-## What We’ll Cover
-Understanding Simulator, RTL Design, Testbench, and Icarus Verilog
+What makes up a design (RTL, testbenches, tools).
 
-Running your first simulation with Icarus Verilog + GTKWave
+Hands-on: Simulating a multiplexer using Icarus Verilog + GTKWave.
 
-Introduction to Yosys and the idea of synthesis
+First steps into synthesis with Yosys.
 
-Practice synthesis using Yosys with the SKY130 PDK
+Exploring the SKY130 library and seeing how RTL becomes gates.
+## Part 1: What’s in the Toolbox?
+Let’s break down the players:
 
-## Step 1: Simulator, Design, and Testbench Basics
-Simulator: A program that lets you test how your circuit behaves without touching real hardware. You provide input signals and see how the circuit responds.
+Simulation software → Like a virtual lab, it lets us test ideas without building physical circuits.
 
-Design: The Verilog code you write. It defines the logical functionality—how inputs are processed to produce outputs.
+RTL design → The Verilog code you write. This is your description of how signals interact.
 
-Testbench: A kind of “experiment setup” where you feed test inputs into your design and check the outputs. It’s like a lab assistant that verifies if your circuit works.
+Testbench → Think of it as an automated script that feeds your design with input patterns and observes results.
 
-Icarus Verilog (iverilog): An open-source tool that simulates your Verilog design. It generates a .vcd file that can be opened in GTKWave to view waveforms.
+Icarus Verilog (iverilog) → The engine that compiles and simulates Verilog. It creates .vcd files (waveform dumps).
 
-<div align="center"> 
-  
-  <img src="https://github.com/user-attachments/assets/93927b96-df80-4da5-b801-284fc2cc6757" alt="Design & Testbench Overview" width="70%">
+GTKWave → A viewer that turns the .vcd file into waveforms so you can visually check what’s happening.
 
-  </div>
+<div align="center"> <img src="https://github.com/user-attachments/assets/93927b96-df80-4da5-b801-284fc2cc6757" alt="Design & Testbench Overview" width="65%"> </div>
 
-<div align="center">
-  <img src="https://github.com/user-attachments/assets/3ca190fb-cfa4-4abb-b9e1-0151b3c4bdba" alt="iverilog Simulation Flow" width="70%">
-</div>
+## Part 2: First Circuit – A Simple MUX
+Instead of jumping into a complex design, let’s start with a 2:1 multiplexer.
 
-## Step 2: Practical Work with Icarus Verilog + GTKWave
-We’ll use a 2-to-1 multiplexer (MUX) as our example.
-
-### 1) Clone the repository
+### Clone the source files:
 ```bash
 git clone https://github.com/kunalg123/sky130RTLDesignAndSynthesisWorkshop.git
 cd sky130RTLDesignAndSynthesisWorkshop/verilog_files
 ```
-### 2) Install gvim (for editing Verilog files)
+### Install an editor (optional):
 ```bash
 sudo apt update
 sudo apt install vim-gtk3
 ```
-### 3) Compile, run, and view waveforms
+### Simulate it:
 ```bash
 iverilog good_mux.v tb_good_mux.v
 ```
@@ -60,34 +55,38 @@ iverilog good_mux.v tb_good_mux.v
 ```bash
 gtkwave tb_good_mux.vcd
 ```
+<div align="center"> <img src="Day 1 gtkwave.png" alt="MUX GTKWave Output" width="65%"> </div>
 
 ![Alt Text](Day 1 gtkwave.png)
 
 ![Alt Text](Day 1 gtkwave.png)
 
-### How the 2x1 MUX Works
-Inputs: i0, i1 (data signals), sel (control)
+### Understanding the Multiplexer
+Inputs: Two data signals (i0, i1) and one selector (sel).
 
-Output: y
+Output: Single result (y).
 
-Logic:
+Logic rule:
 
-If sel = 0 → y = i0
+If sel = 0 → output = i0.
 
-If sel = 1 → y = i1
+If sel = 1 → output = i1.
 
-This simple design shows how selection logic works in hardware.
+This is a great starter circuit because it shows how decision-making logic works in hardware.
 
-## Step 3: Introduction to Yosys and Synthesis
-So far, we’ve tested functionality. But what if we want to actually build the circuit?
+## Part 3: What Is Synthesis?
+Simulation confirms functionality, but it doesn’t tell us how the circuit looks in silicon.
+
 That’s where synthesis comes in.
 
-Yosys takes your RTL (Verilog code) and converts it into a netlist of logic gates.
+Yosys: An open-source synthesizer. It takes Verilog RTL and maps it to real gates.
 
-It uses a cell library (like the SKY130 PDK) that provides the actual building blocks (AND, OR, MUX, etc.).
+Standard cell library (SKY130 PDK): Provides actual building blocks (AND, OR, NAND, flops, MUXes, etc.).
 
-## Step 4: Running Yosys with SKY130
-Inside a terminal:
+Together, they turn your high-level Verilog into something that could physically exist.
+
+## Part 4: Yosys Flow with SKY130
+Open a terminal and try:
 ```bash
 yosys
 ```
@@ -106,23 +105,27 @@ abc -liberty /address/to/your/sky130/file/sky130_fd_sc_hd__tt_025C_1v80.lib
 ```bash
 show
 ```
-This flow takes your multiplexer RTL and maps it into gates from the SKY130 standard cell library. The show command will display the gate-level schematic.
+The final step opens a schematic showing how the RTL multiplexer is realized using gates from the SKY130 library.
+
+<div align="center"> <img src="Day 1 gtkwave.png" alt="MUX Gate-Level" width="65%"> </div>
 
 ![Alt Text](Day 1 gtkwave.png)
-## Key Takeaways from Day 1
-Learned what a simulator does and why it’s useful.
 
-Understood what “design” means in Verilog.
+## Wrap-Up Learnings
+Here’s what you’ve accomplished today:
 
-Saw how a testbench helps in verifying circuits.
+Explored simulation as a safe test environment for circuits.
 
-Wrote and simulated your first Verilog program (2x1 MUX).
+Learned how RTL (Verilog code) captures logic.
 
-Generated waveforms and analyzed them in GTKWave.
+Saw the role of a testbench in automatically verifying designs.
 
-Got introduced to Yosys for synthesis.
+Built and simulated your first Verilog circuit (MUX).
 
-Discovered that gate libraries come in different versions for different needs.
+Visualized outputs as waveforms in GTKWave.
 
-Connected the complete flow:
+Got introduced to Yosys for gate-level synthesis.
 
+Understood that cell libraries (like SKY130) provide the building blocks for actual hardware.
+
+Connected the full flow: RTL → Simulation → Synthesis → Gate-Level Netlist.
